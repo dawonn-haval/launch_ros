@@ -18,6 +18,7 @@ import os
 import threading
 from typing import List
 from typing import Optional
+from random import randrange 
 
 import launch
 import launch.events
@@ -58,7 +59,7 @@ class ROSAdapter:
         self.__ros_context = rclpy.Context()
         rclpy.init(args=self.__argv, context=self.__ros_context)
         self.__ros_node = rclpy.create_node(
-            'launch_ros_{}'.format(os.getpid()),
+            'launch_ros_{}'.format(randrange(1000000)),
             context=self.__ros_context
         )
         self.__ros_executor = SingleThreadedExecutor(context=self.__ros_context)
